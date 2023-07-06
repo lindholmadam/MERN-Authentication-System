@@ -1,30 +1,15 @@
+
 Commands created in the root package.json file
+
 # Terminal commands to run app from root directory 
 npm run client (run frontend)
 npm run server (run backend)
 npm run dev (run frontend + backend concurrently)
+
 # Terminal commands to import or destroy test-data from the seedar-script to database
 npm run data:import
 npm run data:destroy
 
-
-
-
-
-# Exempel users
-Admin
-email: admin@email.com
-password: 123456
-
-Not admin
-email: niklas@email.com
-password: 123456
-
-email: adam@email.com
-password: 123456
-
-email: frida@email.com
-password: 123456
 
 
 

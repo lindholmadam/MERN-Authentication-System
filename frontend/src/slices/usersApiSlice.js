@@ -4,11 +4,20 @@ import { USERS_URL } from '../constants';
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (data) => ({
-        url: `${USERS_URL}/auth`,
-        method: 'POST',
-        body: data,
-      }),
+      query: ({ email, password, googleToken }) => {
+        let body;
+        if (googleToken) {
+          body = { googleToken };
+        } else {
+          body = { email, password };
+        }
+
+        return {
+          url: `${USERS_URL}/auth`,
+          method: 'POST',
+          body,
+        };
+      },
     }),
     register: builder.mutation({
       query: (data) => ({
@@ -57,6 +66,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
+    googleLogin: builder.mutation({
+      query: () => ({
+        url: `${USERS_URL}/auth/google`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -69,4 +84,5 @@ export const {
   useDeleteUserMutation,
   useUpdateUserMutation,
   useGetUserDetailsQuery,
+  useGoogleLoginMutation, // Add this line to export the useGoogleLoginMutation hook
 } = userApiSlice;

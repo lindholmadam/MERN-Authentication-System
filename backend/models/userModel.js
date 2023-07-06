@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-const userSchema = mongoose.Schema(
-  {
-    name: {
+
+const userSchema = new mongoose.Schema({
+    firstName: {
+      type: String,
+      required: true,
+    },
+    surname: {
       type: String,
       required: true,
     },
@@ -16,16 +20,26 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false,
+
+    // To establish a relationship between different models
+    // The ref stands for "reference" and is used in Mongoose to establish a relationship between different models.
+    userAddress: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'UserAddress',
     },
   },
   {
     timestamps: true,
   }
 );
+
+
+
+
+
+
+
+
 
 // Match user entered password to hashed password in database
 userSchema.methods.matchPassword = async function (enteredPassword) {

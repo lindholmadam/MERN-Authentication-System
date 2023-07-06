@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 // import logo from '../assets/logo.png';
+// import { Button } from 'react-bootstrap';
 
 const Header = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -24,43 +25,36 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg="light" data-bs-theme="light" expand='lg' collapseOnSelect>
         <Container>
+
           <LinkContainer to='/'>
-            <Navbar.Brand>
-              {/* <img src={logo} alt='' width="auto" height="70" /> */}
-              LOGO
-            </Navbar.Brand>
+            <Navbar.Brand>flyttaNu.se</Navbar.Brand>
           </LinkContainer>
+
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
               {userInfo ? (
                 <>
-                  <NavDropdown title={userInfo.name} id='username'>
+                  <NavDropdown title={userInfo.firstName} id='firstName'>
                     <LinkContainer to='/profile'>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                      <NavDropdown.Item>Profil</NavDropdown.Item>
                     </LinkContainer>
                     <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
+                      Logga ut
                     </NavDropdown.Item>
                   </NavDropdown>
                 </>
               ) : (
-                <LinkContainer to='/login'>
-                  <Nav.Link>
-                  <i class="fa fa-user" aria-hidden="true"></i> Sign In
-                  </Nav.Link>
-                </LinkContainer>
-              )}
-
-              {/* Admin Links */}
-              {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
+                <Nav className='ms-auto'>
+                  <LinkContainer to='/login'>
+                    <Nav.Link>Logga in</Nav.Link>
                   </LinkContainer>
-                </NavDropdown>
+                  <LinkContainer to='/register'>
+                    <Nav.Link>Skapa konto</Nav.Link>
+                  </LinkContainer>
+                </Nav>
               )}
             </Nav>
           </Navbar.Collapse>

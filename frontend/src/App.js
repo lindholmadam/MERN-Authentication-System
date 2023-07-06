@@ -1,15 +1,29 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
+
+import { useDispatch } from 'react-redux';
+
+// Renders the child route's element
 import { Outlet } from 'react-router-dom';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { logout } from './slices/authSlice';
 
+// Allows to add notifications to the app
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
+
+  // Respons from google auth
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+      console.log(error);
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {

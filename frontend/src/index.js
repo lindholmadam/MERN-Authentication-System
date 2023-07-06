@@ -1,27 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/styles/bootstrap.custom.css';
 import './assets/styles/index.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './components/PrivateRoute';
-import AdminRoute from './components/AdminRoute';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import UserListScreen from './screens/admin/UserListScreen';
-import UserEditScreen from './screens/admin/UserEditScreen';
 import store from './store';
 import { Provider } from 'react-redux';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+// import './assets/styles/bootstrap.custom.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -39,24 +32,23 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<ProfileScreen />} />
       </Route>
-      {/* Admin users */}
-      <Route path='' element={<AdminRoute />}>
-        <Route path='/admin/userlist' element={<UserListScreen />} />
-        <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-      </Route>
     </Route>
   )
 );
 
+const redirectUri = 'http://localhost:5000/api/auth/google/callback';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <Provider store={store}>
-          <RouterProvider router={router} />
-      </Provider>
-    </HelmetProvider>
-  </React.StrictMode>
+  <GoogleOAuthProvider clientId="317531692602-ttu1vjb449aliai0a0ifg2bs8ovm9p6i.apps.googleusercontent.com" redirectUri={redirectUri}>
+    <React.StrictMode>
+      <HelmetProvider>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+      </HelmetProvider>
+    </React.StrictMode>
+  </GoogleOAuthProvider>,
 );
 
 reportWebVitals();

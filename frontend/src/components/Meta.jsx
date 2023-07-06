@@ -15,9 +15,9 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: 'MERN-Starter Web App',
-  description: 'Description for the web',
-  keywords: 'mern app, full stack app, mernstack',
+  title: 'flyttaNu',
+  description: 'Flytta ditt boende med ett klick',
+  keywords: 'flytta, flyttanu, flyttanu.se',
 };
 
 export default Meta;

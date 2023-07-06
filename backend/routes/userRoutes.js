@@ -1,30 +1,26 @@
 import express from 'express';
-import {
-  authUser,
-  registerUser,
-  logoutUser,
-  getUserProfile,
-  updateUserProfile,
-  getUsers,
-  deleteUser,
-  getUserById,
-  updateUser,
-} from '../controllers/userController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+import passport from 'passport';
+import { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getUsers } from '../controllers/userController.js';
+import protect from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').post(registerUser).get(protect, admin, getUsers);
+// Route for initiating the Google Authentication process
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// Route for handling the Google callback
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Redirect or respond with a token based on the authentication result
+    res.redirect('/');
+  }
+);
+
+router.route('/').post(registerUser).get(protect, getUsers);
 router.post('/auth', authUser);
 router.post('/logout', logoutUser);
-router
-  .route('/profile')
-  .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
-router
-  .route('/:id')
-  .delete(protect, admin, deleteUser)
-  .get(protect, admin, getUserById)
-  .put(protect, admin, updateUser);
+router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile);
 
 export default router;
