@@ -1,7 +1,28 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+// ------------------------------------------------------------- ADRESS
+const userAddressSchema = new mongoose.Schema({
+  street: {
+    type: String,
+    required: true,
+  },
+  zipCode: {
+    type: Number,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+});
 
+// const UserAddress = mongoose.model('UserAddress', userAddressSchema);
+
+
+
+
+// ------------------------------------------------------------- MAIN USER
 const userSchema = new mongoose.Schema({
     firstName: {
       type: String,
@@ -20,16 +41,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-
-    // To establish a relationship between different models
-    // The ref stands for "reference" and is used in Mongoose to establish a relationship between different models.
-    userAddress: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'UserAddress',
-    },
+    address: userAddressSchema
   },
-  {
-    timestamps: true,
+  { 
+    timestamps: true 
   }
 );
 
@@ -37,7 +52,9 @@ const userSchema = new mongoose.Schema({
 
 
 
-
+    // To establish a relationship between different models
+    // The ref stands for "reference" and is used in Mongoose to establish a relationship between different models.
+    // userAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'UserAddress'},
 
 
 
@@ -56,6 +73,13 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+
+
+
 const User = mongoose.model('User', userSchema);
+
+
+
+
 
 export default User;

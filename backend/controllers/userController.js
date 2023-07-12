@@ -60,10 +60,11 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, surname, email, password } = req.body;
+
+  const { firstName, surname, email, password
+  } = req.body;
 
   const userExists = await User.findOne({ email });
-
   if (userExists) {
     res.status(400);
     throw new Error('User already exists');
@@ -74,7 +75,9 @@ const registerUser = asyncHandler(async (req, res) => {
     surname,
     email,
     password,
+    address,
   });
+
 
   if (user) {
     generateToken(res, user._id);
@@ -84,12 +87,16 @@ const registerUser = asyncHandler(async (req, res) => {
       firstName: user.firstName,
       surname: user.surname,
       email: user.email,
+      address: user.address,
     });
   } else {
     res.status(400);
     throw new Error('Invalid user data');
   }
 });
+
+
+
 
 
 //-----------------------------------------------------------GET USER PROFILE
@@ -111,6 +118,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
+
+
+
 
 
 //-----------------------------------------------------------UPDATE USER PROFILE

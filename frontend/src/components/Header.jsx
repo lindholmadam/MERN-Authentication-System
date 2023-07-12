@@ -1,10 +1,10 @@
-import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
-// import logo from '../assets/logo.png';
+import logo from '../assets/logo.png';
 // import { Button } from 'react-bootstrap';
 
 const Header = () => {
@@ -25,11 +25,10 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="light" data-bs-theme="light" expand='lg' collapseOnSelect>
+      <Navbar  style={{color: 'white'}} data-bs-theme="light" expand='lg' collapseOnSelect>
         <Container>
-
           <LinkContainer to='/'>
-            <Navbar.Brand>flyttaNu.se</Navbar.Brand>
+            <Navbar.Brand><img src={logo} className="App-logo" alt="logo" style={{height: 35 + 'px'}}/></Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -52,7 +51,7 @@ const Header = () => {
                     <Nav.Link>Logga in</Nav.Link>
                   </LinkContainer>
                   <LinkContainer to='/register'>
-                    <Nav.Link>Skapa konto</Nav.Link>
+                    <Nav.Link>Kom igång</Nav.Link>
                   </LinkContainer>
                 </Nav>
               )}

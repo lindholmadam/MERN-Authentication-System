@@ -5,8 +5,8 @@ import connectDB from './config/db.js';
 import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import passport from 'passport';
-import googleAuthStrategy from './controllers/googleAuthStrategy.js'; // Import the Google Auth strategy
+// import passport from 'passport';
+// import googleAuthStrategy from './controllers/googleAuthStrategy.js'; // Import the Google Auth strategy
 import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
@@ -22,11 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Passport middleware
-app.use(passport.initialize());
-googleAuthStrategy(); // Initialize the Google Auth strategy
+// app.use(passport.initialize());
+// googleAuthStrategy(); // Initialize the Google Auth strategy
 
 app.use('/api/users', userRoutes);
-app.use('/auth/google', userRoutes);
+// app.use('/auth/google', userRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {

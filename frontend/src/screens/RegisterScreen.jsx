@@ -10,11 +10,22 @@ import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
 const RegisterScreen = () => {
+
+  // const address = {
+  //   street: String,
+  //   zipCode: Number,
+  //   city: String
+  // }
+
   const [firstName, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  // const [address, setAddress] = useState('');
+  // const [street, setStreet] = useState('');
+  // const [zipCode, setZipCode] = useState('');
+  // const [city, setCity] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,7 +51,16 @@ const RegisterScreen = () => {
       toast.error('Passwords do not match');
     } else {
       try {
-        const res = await register({ firstName, surname, email, password }).unwrap();
+        const res = await register({ 
+          firstName, 
+          surname, 
+          email, 
+          password, 
+          address,
+          street,
+          zipCode,
+          city 
+        }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
@@ -53,6 +73,8 @@ const RegisterScreen = () => {
     <FormContainer>
       <h1 className='my-4'>Skapa konto</h1>
       <Form onSubmit={submitHandler}>
+
+
 
         <Row>
           <Col>
@@ -83,6 +105,8 @@ const RegisterScreen = () => {
             </Col>
         </Row>
 
+
+
         <Form.Group className='my-3' controlId='email'>
           {/* <Form.Label>Email Address</Form.Label> */}
           <FloatingLabel controlId="floatingInput" label="namn@exempel.com" className="mb-3">
@@ -95,6 +119,8 @@ const RegisterScreen = () => {
           </FloatingLabel>
         </Form.Group>
 
+
+
         <Form.Group className='my-3' controlId='password'>
           {/* <Form.Label>Password</Form.Label> */}
           <FloatingLabel controlId="floatingInput" label="Lösenord" className="mb-3">
@@ -106,7 +132,6 @@ const RegisterScreen = () => {
             ></Form.Control>
           </FloatingLabel>
         </Form.Group>
-        
         <Form.Group className='my-3' controlId='confirmPassword'>
           {/* <Form.Label>Confirm Password</Form.Label> */}
           <FloatingLabel controlId="floatingInput" label="Bekräfta lösenord" className="mb-3">
@@ -118,6 +143,44 @@ const RegisterScreen = () => {
             ></Form.Control>
           </FloatingLabel>
         </Form.Group>
+
+
+
+        <Form.Group className='my-3' controlId='street'>
+          {/* <Form.Label>Email Address</Form.Label> */}
+          <FloatingLabel controlId="floatingInput" label="Street" className="mb-3">
+            <Form.Control
+              type='street'
+              placeholder='Enter street'
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+            ></Form.Control>
+          </FloatingLabel>
+        </Form.Group>
+        <Form.Group className='my-3' controlId='zipCode'>
+          {/* <Form.Label>Email Address</Form.Label> */}
+          <FloatingLabel controlId="floatingInput" label="zipCode" className="mb-3">
+            <Form.Control
+              type={Number}
+              placeholder='Enter address'
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            ></Form.Control>
+          </FloatingLabel>
+        </Form.Group>
+        <Form.Group className='my-3' controlId='city'>
+          {/* <Form.Label>Email Address</Form.Label> */}
+          <FloatingLabel controlId="floatingInput" label="City" className="mb-3">
+            <Form.Control
+              type='city'
+              placeholder='Enter city'
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            ></Form.Control>
+          </FloatingLabel>
+        </Form.Group>
+
+
 
         <Button className='my-3' disabled={isLoading} type='submit' variant='primary'>
           Skapa konto
