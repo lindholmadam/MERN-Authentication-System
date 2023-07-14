@@ -15,7 +15,7 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password, googleToken } = req.body;
 
   // Check if the user exists with the provided email
-  let user = await User.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (user) {
     // If the user exists, authenticate with the password
@@ -61,8 +61,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
 
-  const { firstName, surname, email, password
-  } = req.body;
+  const { firstName, surname, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
   if (userExists) {
@@ -75,7 +74,6 @@ const registerUser = asyncHandler(async (req, res) => {
     surname,
     email,
     password,
-    address,
   });
 
 
@@ -86,8 +84,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       firstName: user.firstName,
       surname: user.surname,
-      email: user.email,
-      address: user.address,
+      email: user.email
     });
   } else {
     res.status(400);

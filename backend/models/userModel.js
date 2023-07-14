@@ -2,20 +2,20 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // ------------------------------------------------------------- ADRESS
-const userAddressSchema = new mongoose.Schema({
-  street: {
-    type: String,
-    required: true,
-  },
-  zipCode: {
-    type: Number,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-});
+// const userAddressSchema = new mongoose.Schema({
+//   street: {
+//     type: String,
+//     required: true,
+//   },
+//   zipCode: {
+//     type: Number,
+//     required: true,
+//   },
+//   city: {
+//     type: String,
+//     required: true,
+//   },
+// });
 
 // const UserAddress = mongoose.model('UserAddress', userAddressSchema);
 
@@ -41,15 +41,12 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    address: userAddressSchema
+    // address: userAddressSchema
   },
   { 
     timestamps: true 
   }
 );
-
-
-
 
 
     // To establish a relationship between different models
@@ -58,7 +55,12 @@ const userSchema = new mongoose.Schema({
 
 
 
-// Match user entered password to hashed password in database
+
+
+// This could have been done in the userController but its cleaner this way 
+
+// Match user entered password to hashed password in database.
+//  We add this function "matchPassword" onto our userShema to use it in userController.js
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
@@ -76,10 +78,11 @@ userSchema.pre('save', async function (next) {
 
 
 
+
+
+
+
+
 const User = mongoose.model('User', userSchema);
-
-
-
-
 
 export default User;
