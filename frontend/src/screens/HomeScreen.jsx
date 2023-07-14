@@ -1,6 +1,5 @@
 import { Row, Container, Image, Col} from 'react-bootstrap';
 import Meta from '../components/Meta';
-import CardComponent from '../components/dibzCompinent';
 // import { Stack} from 'react-bootstrap';
 // import { useParams } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -9,16 +8,17 @@ import CardComponent from '../components/dibzCompinent';
 
 
 
+
+
 const HomeScreen = () => {
   return (
     <>
       <Meta />
-      <Container>
-        <Row className="text-center">
-          <h1>Startsida</h1>
-        </Row>
-        <Row className="text-center">
-        <CardComponent></CardComponent>
+      <Container style={{height: 100}} className="h-100 d-inline-block">
+        {/* <Row className="text-center"> */}
+        <Row>
+          <Col><h1>Med flyttaNu kan du flytta eller säga upp samtliga avtal kopplat till din flytt</h1></Col>
+          <Col className="text-center">Bild</Col>
         </Row>
         {/* <Col className="text-center">
           <Image src={logo} />

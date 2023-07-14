@@ -55,11 +55,7 @@ const RegisterScreen = () => {
           firstName, 
           surname, 
           email, 
-          password, 
-          address,
-          street,
-          zipCode,
-          city 
+          password,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
@@ -146,8 +142,7 @@ const RegisterScreen = () => {
 
 
 
-        <Form.Group className='my-3' controlId='street'>
-          {/* <Form.Label>Email Address</Form.Label> */}
+        {/* <Form.Group className='my-3' controlId='street'>
           <FloatingLabel controlId="floatingInput" label="Street" className="mb-3">
             <Form.Control
               type='street'
@@ -158,7 +153,6 @@ const RegisterScreen = () => {
           </FloatingLabel>
         </Form.Group>
         <Form.Group className='my-3' controlId='zipCode'>
-          {/* <Form.Label>Email Address</Form.Label> */}
           <FloatingLabel controlId="floatingInput" label="zipCode" className="mb-3">
             <Form.Control
               type={Number}
@@ -169,7 +163,6 @@ const RegisterScreen = () => {
           </FloatingLabel>
         </Form.Group>
         <Form.Group className='my-3' controlId='city'>
-          {/* <Form.Label>Email Address</Form.Label> */}
           <FloatingLabel controlId="floatingInput" label="City" className="mb-3">
             <Form.Control
               type='city'
@@ -178,7 +171,7 @@ const RegisterScreen = () => {
               onChange={(e) => setCity(e.target.value)}
             ></Form.Control>
           </FloatingLabel>
-        </Form.Group>
+        </Form.Group> */}
 
 
 
