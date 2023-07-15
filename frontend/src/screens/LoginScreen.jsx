@@ -84,7 +84,7 @@ function LoginScreen() {
         {isLoading && <Loader />}
       </Form>
 
-      <GoogleLoginPage></GoogleLoginPage>
+      {/* <GoogleLoginPage></GoogleLoginPage> */}
 
       <Row className='py-3'>
         <Col>
