@@ -9,11 +9,9 @@ import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
-// import GoogleLoginPage from '../components/GoogleLogin';
 
 
-
-const LoginScreen = () => {
+function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -92,13 +90,13 @@ const LoginScreen = () => {
         <Col>
           Har du inget konto? {' '}
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-          Skapa konto
+            Skapa konto
           </Link>
         </Col>
       </Row>
 
     </FormContainer>
   );
-};
+}
 
 export default LoginScreen;
