@@ -4,6 +4,10 @@ main {
     min-height: 80vh;
   }
 
-  h1 {
+  h1, h5 {
     font-family: 'Exo', sans-serif;
   }
+
+  /* .navbar-toggler-icon {
+    background-image: black!important;
+  } */

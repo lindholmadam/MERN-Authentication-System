@@ -1,12 +1,14 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+// import passport from 'passport';
+// import googleAuthStrategy from './controllers/googleAuthStrategy.js'; // Import the Google Auth strategy
+
 import connectDB from './config/db.js';
 import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-// import passport from 'passport';
-// import googleAuthStrategy from './controllers/googleAuthStrategy.js'; // Import the Google Auth strategy
+
 import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
