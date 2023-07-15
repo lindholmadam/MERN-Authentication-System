@@ -1,13 +1,13 @@
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+// import { MDBNavbarToggler, MDBIcon, MDBCollapse } from 'mdb-react-ui-kit';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
-import logo from '../assets/logo.png';
-// import { Button } from 'react-bootstrap';
 
 const Header = () => {
+
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,13 +25,15 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar  style={{color: 'white'}} data-bs-theme="light" expand='lg' collapseOnSelect>
+      <Navbar  light bgColor='light' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand><img src={logo} className="App-logo" alt="logo" style={{height: 35 + 'px'}}/></Navbar.Brand>
+            <Navbar.Brand>
+              <h2>flytta<span style={{ color: '#EF6262' }}>Nu</span></h2>
+            </Navbar.Brand>
           </LinkContainer>
 
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Toggle aria-controls='basic-navbar-nav'/>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
               {userInfo ? (
