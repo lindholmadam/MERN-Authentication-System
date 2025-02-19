@@ -1,28 +1,20 @@
 import { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-
 import { useDispatch } from 'react-redux';
-
-// Renders the child route's element
-import { Outlet } from 'react-router-dom';
-
+import { Outlet } from 'react-router-dom';// Renders the child route's element
+import { useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { logout } from './slices/authSlice';
-
-// Allows to add notifications to the app
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';// Allows to add notifications to the app
 import 'react-toastify/dist/ReactToastify.css';
 
-const App = () => {
 
-  // Respons from google auth
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-      console.log(error);
-  };
+console.log("App.js renderas!");
+
+const App = () => {
+  const location = useLocation();
+  // Set the condition for when the component should be hidden
+  const hidePartials =  location.pathname === '/login' || location.pathname === '/register' || location.pathname.includes('konto');
 
   const dispatch = useDispatch();
 
@@ -37,14 +29,21 @@ const App = () => {
     }
   }, [dispatch]);
 
+
+
+  
   return (
     <>
       <ToastContainer />
-      <Header />
-      <main>
-          <Outlet />
-      </main>
-      <Footer />
+      <>
+        { hidePartials ? null : <Header/> }
+      </>
+        <main>
+            <Outlet />
+        </main>
+      <>
+        {/* { hidePartials ? null : <Footer/> } */}
+      </>
     </>
   );
 };

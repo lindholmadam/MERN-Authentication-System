@@ -1,13 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@200;300;400;500;600;700;800&display=swap');
 
-main {
+  main {
     min-height: 80vh;
   }
 
-  h1, h5 {
+  h1, h2, h3, h4, h5, p {
     font-family: 'Exo', sans-serif;
   }
 
-  /* .navbar-toggler-icon {
-    background-image: black!important;
-  } */
+  .bg-login-custom {
+    background-image: url("https://images.unsplash.com/photo-1612120898251-e7ccaa0b67cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2767&q=80") !important;
+    height: 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
+  @include media-breakpoint-up(sm) {
+    .center-on-mobile {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+

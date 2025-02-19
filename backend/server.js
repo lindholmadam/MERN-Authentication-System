@@ -1,34 +1,29 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// import passport from 'passport';
-// import googleAuthStrategy from './controllers/googleAuthStrategy.js'; // Import the Google Auth strategy
-
 import connectDB from './config/db.js';
 import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-
 import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
-// If the specified PORT is't found for some reason - use port 5000
+// If the PORT from .env is't found for some reason - use port 5000
 const PORT = process.env.PORT || 5000;
 
 connectDB();
 
 const app = express();
 
-app.use(express.json());
+
+// Theese two body parser middlewares will allow the server to get body data from our api requests
+app.use(express.json()); // Lets the server use json from the body that gets past up to it inside the requst
 app.use(express.urlencoded({ extended: true }));
+
+// Cookie parser middleware. This will allow the server to access request.cookies. Since we use JWT we can use request.cookies.jwt. We do this in authMiddleware.js
 app.use(cookieParser());
 
-// Passport middleware
-// app.use(passport.initialize());
-// googleAuthStrategy(); // Initialize the Google Auth strategy
-
 app.use('/api/users', userRoutes);
-// app.use('/auth/google', userRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {

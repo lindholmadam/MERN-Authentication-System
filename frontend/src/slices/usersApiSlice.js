@@ -1,26 +1,28 @@
+
+// This slice is where all the actual calls to the backend will take place
+// We're not adding this to the store since this is basically a child of the apiSlice.js
+
 import { apiSlice } from './apiSlice';
 import { USERS_URL } from '../constants';
+
+
+
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
 
-    login: builder.mutation({
-      query: ({ email, password, googleToken }) => {
-        let body;
-        if (googleToken) {
-          body = { googleToken };
-        } else {
-          body = { email, password };
-        }
-
-        return {
-          url: `${USERS_URL}/auth`,
-          method: 'POST',
-          body,
-        };
-      },
+// ---------------------------------------- LOGIN / AUTH
+    login: builder.mutation({      // Here we call the login at this mutation. It will send the request to the backend and set the cookie
+      query: (data) => ({          // We are sending the data..
+        url: `${USERS_URL}/auth`,  // ..to this endpoint
+        method: 'POST',            // Here we specifying that it is a post request
+        body: data,                // Here we specifying that the body is the data that gets pased in
+      }),
     }),
 
+
+
+// ---------------------------------------- REGISTER
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}`,
@@ -29,6 +31,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+
+
+// ---------------------------------------- LOGOUT
     logout: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
@@ -36,6 +41,21 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------- PROFILE
     profile: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/profile`,
@@ -44,6 +64,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+// ---------------------------------------- GET USERS
     getUsers: builder.query({
       query: () => ({
         url: USERS_URL,
@@ -52,6 +73,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
+
+// ---------------------------------------- DELETE USER
     deleteUser: builder.mutation({
       query: (userId) => ({
         url: `${USERS_URL}/${userId}`,
@@ -59,6 +82,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+
+// ---------------------------------------- GET USER DETAILS
     getUserDetails: builder.query({
       query: (id) => ({
         url: `${USERS_URL}/${id}`,
@@ -66,6 +91,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
+
+// ---------------------------------------- UPDATE USER
     updateUser: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/${data.userId}`,
@@ -74,16 +101,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    
-    googleLogin: builder.mutation({
-      query: () => ({
-        url: `${USERS_URL}/auth/google`,
-        method: 'GET',
-      }),
-    }),
   }),
 });
 
+
+// This is how you export a mutation use + nameOfMutation + Mutation
 export const {
   useLoginMutation,
   useLogoutMutation,
@@ -93,5 +115,4 @@ export const {
   useDeleteUserMutation,
   useUpdateUserMutation,
   useGetUserDetailsQuery,
-  useGoogleLoginMutation, // Add this line to export the useGoogleLoginMutation hook
 } = userApiSlice;
