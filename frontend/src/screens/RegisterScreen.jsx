@@ -6,11 +6,9 @@ import { Form, Row, Col, FloatingLabel, Navbar, Nav, Container, Button } from 'r
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-// components
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 
-// slices
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice'; // For setting the login credentials. From backen JWT
 
@@ -19,7 +17,6 @@ import { setCredentials } from '../slices/authSlice'; // For setting the login c
 
 
 const RegisterScreen = () => {
-  // State variables for the registration form
   const [step, setStep] = useState(1);
 
   const [firstName, setName] = useState('');
@@ -89,11 +86,6 @@ const RegisterScreen = () => {
       }
     }
   };
-
-
-
-
-
 
 
 

@@ -13,7 +13,6 @@ console.log("App.js renderas!");
 
 const App = () => {
   const location = useLocation();
-  // Set the condition for when the component should be hidden
   const hidePartials =  location.pathname === '/login' || location.pathname === '/register' || location.pathname.includes('konto');
 
   const dispatch = useDispatch();
@@ -42,7 +41,6 @@ const App = () => {
             <Outlet />
         </main>
       <>
-        {/* { hidePartials ? null : <Footer/> } */}
       </>
     </>
   );

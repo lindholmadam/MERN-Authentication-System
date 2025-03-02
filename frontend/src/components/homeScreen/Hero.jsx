@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 const Hero = () => {
-  const { userInfo } = useSelector((state) => state.auth); // Kolla om användaren är inloggad
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -19,12 +19,10 @@ const Hero = () => {
           <div className='d-flex justify-content-center align-items-center h-100'>
             <div className='text-white col-11 d-flex flex-column align-items-center'>
               
-              {/* Flytta upp h1 en tredjedel från knapparna */}
               <h1 className='mb-5' style={{ transform: 'translateY(-33%)' }}>
               JWT-baserad autentisering med MERN
               </h1>
 
-              {/* Visa endast knappar om användaren inte är inloggad */}
               {!userInfo && (
                 <div className="w-100 d-flex flex-column align-items-center">
                   <Button href='/register' size='lg' className='mb-4 w-50 text-dark' variant='light'>

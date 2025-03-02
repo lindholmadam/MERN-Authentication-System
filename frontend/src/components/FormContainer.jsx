@@ -3,8 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 
 
-
-
 const FormContainer = ({ children }) => {
   const location = useLocation();
   const loginPage = location.pathname === '/login';
@@ -14,7 +12,6 @@ const FormContainer = ({ children }) => {
       <Row className='justify-content-md-center'>
         { loginPage ? (
           <>
-          {/* This means that - on xs screens the column will fill all 12 units. On medium screens only 8 units */}
             <Col xs={12} md={8}> 
               {children}
             </Col>

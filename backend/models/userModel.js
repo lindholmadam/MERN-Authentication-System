@@ -43,12 +43,7 @@ const userSchema = mongoose.Schema({
 );
 
 
-
-
     // To establish a relationship between different models
-
-
-
 
 
 // Match user entered password to hashed password in database

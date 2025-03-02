@@ -8,7 +8,6 @@ import cookieParser from 'cookie-parser';
 import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
-// If the PORT from .env is't found for some reason - use port 5000
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -18,7 +17,6 @@ const app = express();
 console.log('NODE_ENV:', process.env.NODE_ENV);
 console.log('PORT:', process.env.PORT);
 
-// Theese two body parser middlewares will allow the server to get body data from our api requests
 app.use(express.json()); // Lets the server use json from the body that gets past up to it inside the requst
 app.use(express.urlencoded({ extended: true }));
 

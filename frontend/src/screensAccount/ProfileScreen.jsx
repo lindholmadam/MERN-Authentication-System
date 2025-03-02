@@ -9,7 +9,6 @@ import { setCredentials } from '../slices/authSlice';
 
 // components
 import Loader from '../components/Loader';
-import FormContainer from '../components/FormContainer';
 import ContentContainer from '../components/homeScreenAccount/ContentContainer';
 
 
@@ -114,16 +113,6 @@ const ProfileScreen = () => {
               </FloatingLabel>
             </Form.Group>
 
-            {/* <Form.Group className='my-3' controlId='city'>
-              <FloatingLabel controlId="floatingSelect" label="Stad">
-                <Form.Select aria-label="Floating label select example">
-                  <option></option>
-                  <option value="1">Stockholm</option>
-                  <option value="2">Göteborg</option>
-                  <option value="3">Malmö</option>
-                </Form.Select>
-              </FloatingLabel>
-            </Form.Group> */}
 
               <Button type='submit' variant='primary'>
                 Uppdatera

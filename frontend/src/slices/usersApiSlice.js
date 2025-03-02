@@ -105,7 +105,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
 });
 
 
-// This is how you export a mutation use + nameOfMutation + Mutation
 export const {
   useLoginMutation,
   useLogoutMutation,

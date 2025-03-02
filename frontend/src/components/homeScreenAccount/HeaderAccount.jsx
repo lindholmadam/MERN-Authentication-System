@@ -12,12 +12,12 @@ const HeaderAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
-  const [isOpen, setIsOpen] = useState(window.innerWidth >= 992); // Öppen som standard på stora skärmar
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= 992); 
 
-  // Lyssnar på fönsterstorlek och uppdaterar menybeteendet
+
   useEffect(() => {
     const handleResize = () => {
-      setIsOpen(window.innerWidth >= 992); // Stängd under 992px, öppen över 992px
+      setIsOpen(window.innerWidth >= 992); 
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -37,10 +37,8 @@ const HeaderAccount = () => {
 
   return (
     <>
-      {/* Header - Alltid överst */}
       <Header />
 
-      {/* Hamburgermeny-knapp - Endast synlig på små skärmar */}
       {window.innerWidth < 992 && (
         <button 
           onClick={toggleSidebar} 
@@ -59,7 +57,6 @@ const HeaderAccount = () => {
         </button>
       )}
 
-      {/* Sidomeny - Statisk på stora skärmar, hamburgermeny på små skärmar */}
       <div
         style={{
           position: window.innerWidth >= 992 ? 'relative' : 'fixed', 

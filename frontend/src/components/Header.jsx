@@ -9,8 +9,8 @@ import logo from '../assets/images/crown-seeklogo.svg';
 
 const Header = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/"; // Kolla om vi är på startsidan
-  const isRegisterPage = location.pathname === "/register"; // Kolla om vi är på register-sidan
+  const isHomePage = location.pathname === "/"; 
+  const isRegisterPage = location.pathname === "/register"; 
 
   const hideLoginBtn = isRegisterPage;
   const hideRegisterBtn = isRegisterPage; 
@@ -42,7 +42,6 @@ const Header = () => {
               </Navbar.Brand>
             </LinkContainer>
 
-            {/* Visa endast meny om vi är på startsidan eller register-sidan */}
             {(isHomePage) && (
               <>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -50,7 +49,6 @@ const Header = () => {
                   <Nav className="ms-auto align-items-center">
                     {userInfo ? (
                       <>
-                        {/* Visa "Mitt konto" och "Logga ut" i navbaren på stora skärmar */}
                         <div className="d-none d-lg-flex gap-2">
                           <LinkContainer to="/konto">
                             <Nav.Link>Mitt konto</Nav.Link>
@@ -58,7 +56,6 @@ const Header = () => {
                           <Nav.Link onClick={logoutHandler}>Logga ut</Nav.Link>
                         </div>
 
-                        {/* Visa "Mitt konto" och "Logga ut" i hamburgermenyn */}
                         <div className="d-lg-none w-100 text-center">
                           <LinkContainer to="/konto">
                             <Nav.Link>Mitt konto</Nav.Link>
@@ -82,7 +79,6 @@ const Header = () => {
                           )}
                         </div>
 
-                        {/* Visa länkar i hamburgermenyn */}
                         <div className="d-lg-none w-100 text-center">
                           {!hideLoginBtn && (
                             <LinkContainer to="/login">

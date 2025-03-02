@@ -1,6 +1,3 @@
-// This is the entry point for react. Where we embed our main <App> component
-// React
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
